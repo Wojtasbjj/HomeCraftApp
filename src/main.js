@@ -32,11 +32,11 @@ const store = createStore({
 
             const responseData = await response.json();
 
-            // if (!response.ok) {
-            //     console.log(responseData)
-            //     const error = new Error(responseData.message || 'Fail to authenticate');
-            //     throw error;
-            // }
+            if (!response.ok) {
+                console.log(responseData)
+                const error = new Error(responseData.message || 'Fail to authenticate');
+                throw error;
+            }
 
             console.log(responseData);
             context.commit('setUser', {
