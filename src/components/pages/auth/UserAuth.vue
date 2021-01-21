@@ -47,7 +47,14 @@ export default {
                 this.formIsValid = false;
                 return;
             }
-            // tutaj bedziemy wysyłać dane przez http
+            if(this.mode === 'login') {
+                //...
+            } else {
+                this.$store.dispatch('signup', {
+                    email: this.email,
+                    password: this.password
+                })
+            }
         },
         switchAuthMode() {
             if (this.mode === 'login') {
