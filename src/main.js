@@ -69,6 +69,14 @@ const store = createStore({
             });
         }
     },
+    getters: {
+        token(state) {
+            return state.token
+        },
+        isAuthenticated(state) {
+            return !!state.token;
+        }
+    },
     mutations: {
         setUser(state, payload) {
             state.token = payload.token;

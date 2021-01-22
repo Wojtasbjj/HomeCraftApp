@@ -1,8 +1,8 @@
 <template>
   <div>
     <the-header></the-header>
-    <welcome-page></welcome-page>
-    <user-auth></user-auth>
+    <welcome-page v-if="!isLoggedIn"></welcome-page>
+    <user-auth v-if="!isLoggedIn"></user-auth>
     <router-view></router-view>
     <the-footer></the-footer>
   </div>
@@ -20,6 +20,11 @@ export default {
     TheFooter,
     WelcomePage,
     UserAuth,
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated;
+    }
   }
 }
 </script>
