@@ -19,7 +19,7 @@ export default {
     TheHeader,
     TheFooter,
     WelcomePage,
-    UserAuth
+    UserAuth,
   }
 }
 </script>
