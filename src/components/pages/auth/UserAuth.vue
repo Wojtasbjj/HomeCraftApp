@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submitForm">
+    <form v-if="!isLoggedIn" @submit.prevent="submitForm">
         <div class="form-control">
            <label for="email">E-mail</label>
            <input type="email" id="email" v-model.trim="email" />
