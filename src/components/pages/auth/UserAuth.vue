@@ -9,8 +9,8 @@
            <input type="password" id="password" v-model.trim="password"/>
         </div>
         <p v-if="!formIsValid">Dane są nieprawdiłowe! Hasło musi zawierać conajmniej 6 znaków</p>
-        <button>{{submitButtonCaption}}</button>
-        <button type="button" @click="switchAuthMode">{{switchModeButtonCaption }}</button>
+        <button class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{{submitButtonCaption}}</button>
+        <button class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700" type="button" @click="switchAuthMode">{{switchModeButtonCaption }}</button>
     </form>
 </template>
 
@@ -34,9 +34,9 @@ export default {
         },
         switchModeButtonCaption() {
             if (this.mode === 'login') {
-                return 'nie masz konta? Zarejestruj się'
+                return 'lub Zarejestruj się'
             } else {
-                return 'masz konto? Zaloguj się'
+                return 'lub Zaloguj się'
             }
         },
     },
