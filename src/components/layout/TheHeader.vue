@@ -27,11 +27,25 @@
           <router-link to="/" class="text-base font-medium text-white hover:text-gray-400">routerlink4</router-link>
       </nav>
       <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-           <router-link to="/auth" class="whitespace-nowrap text-base font-medium text-white hover:text-gray-400">Zaloguj się</router-link>
 
-        <router-link to="/auth" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Dołącz</router-link>
+           <router-link v-if="!isLoggedIn" to="/auth" class="whitespace-nowrap text-base font-medium text-white hover:text-gray-400">Zaloguj się</router-link>
+
+        <router-link v-if="!isLoggedIn" to="/auth" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Dołącz</router-link>
+
+        <button v-if="isLoggedIn" to="/auth" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Wyloguj</button>
+
       </div>
     </div>
   </div>
 </div>
 </template>
+
+<script>
+export default {
+  computed: {
+        isLoggedIn() {
+            return this.$store.getters.isAuthenticated;
+        }
+  }
+}
+</script>
