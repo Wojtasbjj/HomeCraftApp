@@ -11,15 +11,15 @@
 <script>
 import TheHeader from './components/layout/TheHeader.vue'
 import TheFooter from './components/layout/TheFooter.vue'
-// import WelcomePage from './components/pages/WelcomePage.vue'
-// import UserAuth from './components/pages/auth/UserAuth.vue'
+
 
 export default {
   components: {
     TheHeader,
     TheFooter,
-    // WelcomePage,
-    // UserAuth,
+  },
+  created() {
+    this.$store.dispatch('autoLogin');
   },
   computed: {
     isLoggedIn() {
