@@ -1,3 +1,5 @@
+let timer;
+
 import {
     createApp
 } from 'vue'
@@ -33,11 +35,13 @@ const store = createStore({
         logout(context) {
             localStorage.removeItem('token');
             localStorage.removeItem('userId');
+            localStorage.removeItem('tokenExpiration');
+
+            clearTimeout(timer);
 
             context.commit('setUser', {
                 token: null,
                 userId: null,
-                tokenExpiration: null
             })
         },
         async auth(context, payload) {
@@ -64,30 +68,46 @@ const store = createStore({
                 throw error;
             }
 
-            const expiresIn = responseData.expiresIn * 1000
-            const expirationDate = new Date().getTime() +
+            const expiresIn = +responseData.expiresIn * 1000;
+            const expirationDate = new Date().getTime() + expiresIn;
 
-                localStorage.setItem('token', responseData.idToken);
+
+            localStorage.setItem('token', responseData.idToken);
             localStorage.setItem('userId', responseData.localId);
+            localStorage.setItem('tokenExpiration', expirationDate);
+
+            timer = setTimeout(function () {
+                context.dispatch('logout')
+            }, expiresIn);
 
             context.commit('setUser', {
                 token: responseData.idToken,
                 userId: responseData.localId,
-                tokenExpiration: responseData.expiresIn
             });
         },
         autoLogin(context) {
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('userId');
+            const tokenExpiration = localStorage.getItem('tokenExpiration');
+
+
+            const expiresIn = +tokenExpiration - new Date().getTime();
+
+            if (expiresIn < 0) {
+                return;
+            }
+
+            timer = setTimeout(function () {
+                context.dispatch('logout')
+            }, expiresIn)
 
             if (token && userId) {
                 context.commit('setUser', {
                     token: token,
                     userId: userId,
-                    tokenExpiration: null
                 })
             }
-        }
+        },
     },
     getters: {
         token(state) {
@@ -101,7 +121,6 @@ const store = createStore({
         setUser(state, payload) {
             state.token = payload.token;
             state.userId = payload.userId;
-            state.tokenExpiration = payload.tokenExpiration;
         }
     }
 })
