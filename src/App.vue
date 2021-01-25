@@ -19,7 +19,7 @@ export default {
     TheFooter,
   },
   created() {
-
+    this.$store.dispatch('autoLogin');
   },
   computed: {
     isLoggedIn() {

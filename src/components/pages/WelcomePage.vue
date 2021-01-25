@@ -1,4 +1,5 @@
 <template>
+<div>
 <div v-if="!isLoggedIn" class="relative bg-white overflow-hidden">
   <div class="max-w-7xl mx-auto">
     <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -62,6 +63,7 @@
   <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
     <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://www.claudia.pl/media/cache/default_view/uploads/media/default/0001/17/9eecdcb4503e0fdb0cc1a6563f76623ec681109f.jpeg" alt="">
   </div>
+</div>
 </div>
 </template>
 
