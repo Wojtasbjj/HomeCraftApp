@@ -1,10 +1,8 @@
 <template>
   <div>
-    <the-header></the-header>
-    <!-- <welcome-page v-if="!isLoggedIn"></welcome-page>
-    <user-auth v-if="!isLoggedIn"></user-auth> -->
+    <the-header v-if="!isLoggedIn"></the-header>
     <router-view></router-view>
-    <the-footer></the-footer>
+    <the-footer v-if="!isLoggedIn"></the-footer>
   </div>
 </template>
 
