@@ -3,9 +3,6 @@
   <div class="max-w-md w-full space-y-8">
     <div>
       <img class="mx-auto h-12 w-auto" src="https://www.brandcrowd.com/gallery/brands/pictures/picture15596472609519.jpg" alt="Workflow">
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-        Podaj swoje dane
-      </h2>
       <!-- <p class="mt-2 text-center text-sm text-gray-600">
         Or
         <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
@@ -16,13 +13,9 @@
     <form class="mt-8 space-y-6" v-if="!isLoggedIn" @submit.prevent="submitForm">
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
-        <div v-if="mode === 'signup'">
-            <label for="name" class="sr-only">Email address</label>
-            <input id="name" name="name" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Imię" v-model.trim="FirstName">
-        </div>
-        <div v-if="mode === 'signup'">
-            <label for="surname" class="sr-only">Email address</label>
-            <input id="surname" name="surname" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nazwisko" v-model.trim="surName">
+        <div>
+          <label for="user-name" class="sr-only">User Name</label>
+          <input id="user-name" name="user-name" type="text" autocomplete="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nazwa Użytkownika" v-if="mode === 'signup'" v-model.trim="userName">
         </div>
         <div>
           <label for="email-address" class="sr-only">Email address</label>
@@ -30,7 +23,7 @@
         </div>
         <div>
           <label for="password" class="sr-only">Password</label>
-          <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Hasło" v-model.trim="password">
+          <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Hasło" v-model.trim="password"> 
         </div>
       </div>
 
@@ -41,9 +34,23 @@
             Remember me
           </label>
         </div> -->
-        <button v-if="!isLoggedIn" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{{submitButtonCaption}}</button>
 
-        <button v-if="!isLoggedIn" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700" type="button" @click="switchAuthMode">{{switchModeButtonCaption }}</button>
+        <div class="flex" v-if="mode === 'login'">
+        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
+        <label for="remember_me" class="ml-2 block text-sm text-gray-900">Zapamiętaj mnie</label>
+        </div>
+
+        <router-link v-if="mode === 'login'" to="/auth" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie pamiętasz hasła ? </router-link>
+
+        <div class="flex" v-if="mode === 'signup'">
+        <input id="accept" name="accept" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
+        <label for="accept" class="ml-2 block text-sm text-gray-900">Akceptuję regulamin i oddaję swoją dusze</label>
+        </div>
+        
+
+          <!-- <button v-if="!isLoggedIn" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">{{submitButtonCaption}}</button> -->
+
+        <!-- <button v-if="!isLoggedIn" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700" type="button" @click="switchAuthMode">{{switchModeButtonCaption }}</button> -->
 
 
         <!-- <div class="text-sm">
@@ -52,6 +59,13 @@
           </a>
         </div> -->
       </div>
+      <button v-if="!isLoggedIn" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-lightblue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50" aria-required="true">{{submitButtonCaption}}</button>
+
+
+      <button v-if="mode === 'login'" @click="switchAuthMode" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie masz konta ? Zarejestruj się</button>
+
+      <button v-if="mode === 'signup'" @click="switchAuthMode" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Masz już konto ? Zaloguj się</button>
+
 
       <div>
         
@@ -78,12 +92,11 @@
 export default {
     data () {
         return {
+            userName: '',
             email: '',
             password: '',
             formIsValid: true,
             mode: 'login',
-            FirstName: '',
-            surName: ''
         }
     },
     computed: {
@@ -114,6 +127,7 @@ export default {
             }
             if(this.mode === 'login') {
                 await this.$store.dispatch('login', {
+                    userName: this.userName,
                     email: this.email,
                     password: this.password
                 })

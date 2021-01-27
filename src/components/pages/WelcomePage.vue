@@ -66,16 +66,10 @@
   </div>
 </div>
 </div>
-<user-auth></user-auth>
 </div>
 </template>
-
 <script>
-import UserAuth from './auth/UserAuth.vue'
 export default {
-  components: {
-    UserAuth
-  },
   computed: {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated;
