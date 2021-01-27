@@ -17,13 +17,14 @@ const store = createStore({
             userId: null,
             token: null,
             tokenExpiration: null,
+            AuthMode: 'login',
         }
     },
     actions: {
         async login(context, payload) {
             return context.dispatch('auth', {
                 ...payload,
-                mode: 'login'
+                mode: 'signup'
             })
         },
         async signup(context, payload) {
@@ -122,6 +123,9 @@ const store = createStore({
         setUser(state, payload) {
             state.token = payload.token;
             state.userId = payload.userId;
+        },
+        setLoginMode(state) {
+            state.AuthMode = 'signin'
         }
     }
 })

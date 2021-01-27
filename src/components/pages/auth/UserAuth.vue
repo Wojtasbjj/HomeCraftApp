@@ -36,7 +36,7 @@
         </div> -->
 
         <div class="flex" v-if="mode === 'login'">
-        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
+        <input @click="check()" id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
         <label for="remember_me" class="ml-2 block text-sm text-gray-900">Zapamiętaj mnie</label>
         </div>
 
@@ -65,6 +65,7 @@
       <button v-if="mode === 'login'" @click="switchAuthMode" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie masz konta ? Zarejestruj się</button>
 
       <button v-if="mode === 'signup'" @click="switchAuthMode" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Masz już konto ? Zaloguj się</button>
+
 
 
       <div>
@@ -96,7 +97,7 @@ export default {
             email: '',
             password: '',
             formIsValid: true,
-            mode: 'login',
+            mode: this.$store.state.AuthMode
         }
     },
     computed: {
@@ -119,6 +120,10 @@ export default {
         },
     },
     methods: {
+      check() {
+        console.log(this.mode)
+        console.log(this.$store.state.AuthMode)
+      },
         async submitForm() { 
             this.fromIsValid = true;
             if(this.email === '' || !this.email.includes('@') || this.password.length < 6) {
@@ -145,7 +150,7 @@ export default {
             } else {
                 this.mode = 'login'
             }
-        }
+        },
     }
 }
 </script>
