@@ -8,10 +8,6 @@
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
         <div>
-          <label for="user-name" class="sr-only">User Name</label>
-          <input id="user-name" name="user-name" type="text" autocomplete="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Nazwa Użytkownika" v-if="mode === 'signup'" v-model.trim="userName">
-        </div>
-        <div>
           <label for="email-address" class="sr-only">Email address</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" v-model.trim="email">
         </div>
@@ -23,25 +19,19 @@
 
       <div class="flex items-center justify-between">
 
-        <div class="flex" v-if="mode === 'login'">
+        <div class="flex">
         <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
         <label for="remember_me" class="ml-2 block text-sm text-gray-900">Zapamiętaj mnie</label>
         </div>
 
-        <router-link v-if="mode === 'login'" to="/auth" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie pamiętasz hasła ? </router-link>
-
-        <div class="flex" v-if="mode === 'signup'">
-        <input id="accept" name="accept" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
-        <label for="accept" class="ml-2 block text-sm text-gray-900">Akceptuję regulamin i oddaję swoją dusze</label>
-        </div>
+        <router-link to="/auth" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie pamiętasz hasła ? </router-link>
         
       </div>
-      <button v-if="!isLoggedIn" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-lightblue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50" aria-required="true">{{submitButtonCaption}}</button>
+      <button v-if="!isLoggedIn" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-lightblue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50" aria-required="true">Zaloguj się</button>
 
 
-      <button v-if="mode === 'login'" @click="switchAuthMode" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie masz konta ? Zarejestruj się</button>
+      <router-link to="/user/register" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie masz konta ? Zarejestruj się</router-link>
 
-      <button v-if="mode === 'signup'" @click="switchAuthMode" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Masz już konto ? Zaloguj się</button>
       <div>
       </div>
     </form>
@@ -57,26 +47,11 @@ export default {
             email: '',
             password: '',
             formIsValid: true,
-            mode: 'login',
         }
     },
     computed: {
         isLoggedIn() {
             return this.$store.getters.isAuthenticated;
-        },
-        submitButtonCaption() {
-            if (this.mode === 'login') {
-                return 'Zaloguj się'
-            } else {
-                return 'Zarejestruj się'
-            }
-        },
-        switchModeButtonCaption() {
-            if (this.mode === 'login') {
-                return 'lub Zarejestruj się'
-            } else {
-                return 'lub Zaloguj się'
-            }
         },
     },
     methods: {
@@ -86,27 +61,15 @@ export default {
                 this.formIsValid = false;
                 return;
             }
-            if(this.mode === 'login') {
+
                 await this.$store.dispatch('login', {
                     userName: this.userName,
                     email: this.email,
                     password: this.password
                 })
-            } else {
-                this.$store.dispatch('signup', {
-                    email: this.email,
-                    password: this.password
-                })
-            }
+            
             this.$router.push('/userpanel')
         },
-        switchAuthMode() {
-            if (this.mode === 'login') {
-                this.mode = 'signup'; 
-            } else {
-                this.mode = 'login'
-            }
-        }
     }
 }
 </script>
