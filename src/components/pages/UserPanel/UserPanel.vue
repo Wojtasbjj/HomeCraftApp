@@ -15,6 +15,14 @@
         </div>
         <ul class="space-y-2 text-sm">
 
+            <li>
+                <router-link to="/userpanel/" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>HomeCraft</span>
+                </router-link>
+            </li>
+
            <li>
                 <div class="flex items-center space-x-3 text-white p-2 rounded-md font-medium bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
                     <span class="text-gray-600">
@@ -24,7 +32,7 @@
             </li>
 
             <li class="ml-4">
-                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                <router-link to="/userpanel/alkohols" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>Alkohole</span>
@@ -32,7 +40,7 @@
             </li>
 
             <li class="ml-4">
-                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                <router-link to="/userpanel/cannabis" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>Konopie</span>
@@ -40,7 +48,7 @@
             </li>
 
             <li class="ml-4">
-                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                <router-link to="/userpanel/honey" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>Miody</span>
@@ -48,7 +56,7 @@
             </li>
 
             <li class="ml-4">
-                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                <router-link to="/userpanel/meat" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>Wędliny</span>
@@ -56,7 +64,7 @@
             </li>
 
             <li>
-                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>Wiadomości</span>
@@ -64,7 +72,7 @@
             </li>
 
             <li>
-                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>Ustawienia</span>
