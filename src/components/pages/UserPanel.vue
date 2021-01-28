@@ -1,39 +1,88 @@
 <template>
-<div v-if="isLoggedIn">
-   <div class="bg-gray-100 font-sans leading-normal tracking-normal">
-      <div class="flex md:flex-row-reverse flex-wrap">
-<!-- MAIN CONTENT  --> TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? TUTAJ WJEZDZA MAIN CONTENT ? 
-         <div class="w-full md:w-4/5 bg-gray-100">
-            <div class="container bg-gray-100 pt-16 px-6">
+<div class="h-screen overflow-hidden flex items-center justify-center bg-gray-900" v-if="isLoggedIn">
+    <div class="flex flex-wrap bg-gray-100 w-full h-screen">
+    <div class="w-3/12 bg-gray-900 rounded p-3 shadow-lg">
+        <div class="flex items-center space-x-4 p-2 mb-5">
+            <img class="h-12 rounded-full" src="http://www.gravatar.com/avatar/2acfb745ecf9d4dccb3364752d17f65f?s=260&d=mp" alt="Nazwa Użytkownika">
+            <div>
+                <h4 class="font-semibold text-lg text-white capitalize font-poppins tracking-wide">Nazwa Użytkownika</h4>
+                <span class="text-sm tracking-wide flex items-center space-x-1">
+                    <svg class="h-4 text-green-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg><span class="text-gray-600">Verified</span>
+                </span>
             </div>
-         </div>
-<!-- SLIDE BAR  -->
-         <div class="w-full md:w-1/5 bg-gray-900 md:bg-gray-900 px-2 text-center fixed bottom-0 md:pt-8 md:top-0 md:left-0 h-16 md:h-screen md:border-r-4 md:border-gray-600">
-            <div class="md:relative mx-auto lg:float-right lg:px-6">
-               <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
-                   <li class="mr-3 flex-1">
-                       <router-link to="/userpanel" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-gray-500"><i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-white block md:inline-block">Panel</span></router-link>
-                  </li>
-                  <li class="mr-3 flex-1">
-                       <router-link to="/userpanel" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-gray-500"><i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-white block md:inline-block">Alkohole</span></router-link>
-                  </li>
-                  <li class="mr-3 flex-1">
-                       <router-link to="/userpanel" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-gray-500"><i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-white block md:inline-block">Przetwory roślinne</span></router-link>
-                  </li>
-                  <li class="mr-3 flex-1">
-                       <router-link to="/userpanel" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-gray-500"><i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-white block md:inline-block">Żywność</span></router-link>
-                  </li>
-                  <li class="mr-3 flex-1">
-                     <a href="#" @click="logout" class="block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 border-b-2 border-gray-800 md:border-gray-900 hover:border-gray-500">
-                     <i class="fas fa-link pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-600 md:text-gray-400 block md:inline-block">Wyloguj się</span>
-                     </a>
-                  </li>
-               </ul>
-            </div>
-         </div>
-      </div>
-   </div>
+        </div>
+        <ul class="space-y-2 text-sm">
+
+           <li>
+                <div class="flex items-center space-x-3 text-white p-2 rounded-md font-medium bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Moja spiżarka</span>
+                </div>
+            </li>
+
+            <li class="ml-4">
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Alkohole</span>
+                </router-link>
+            </li>
+
+            <li class="ml-4">
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Konopie</span>
+                </router-link>
+            </li>
+
+            <li class="ml-4">
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Miody</span>
+                </router-link>
+            </li>
+
+            <li class="ml-4">
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Wędliny</span>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Wiadomości</span>
+                </router-link>
+            </li>
+
+            <li>
+                <router-link to="/userpanel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-200 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Ustawienia</span>
+                </router-link>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="w-9/12">
+        <div class="p-4 text-gray-500">
+            Dashboard
+            <router-view></router-view>
+        </div>
+    </div>
 </div>
+</div>
+
 </template>
 
 <script>

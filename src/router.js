@@ -8,6 +8,7 @@ import WelcomePage from './components/pages/WelcomePage.vue'
 import UserPanel from './components/pages/UserPanel.vue'
 import UserLogin from './components/pages/auth/UserLogin.vue'
 import UserRegister from './components/pages/auth/UserRegister.vue'
+import TheAlkohols from './components/pages/TheAlkohols.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -22,6 +23,10 @@ const router = createRouter({
         {
             path: '/userpanel',
             component: UserPanel,
+            children: [{
+                path: 'alkohols',
+                component: TheAlkohols,
+            }],
         },
         {
             path: '/',
