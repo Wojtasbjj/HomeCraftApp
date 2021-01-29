@@ -83,8 +83,9 @@
     </div>
 
     <div class="w-9/12">
-        <div class="p-4 text-gray-500">
-            Dashboard
+    <div>
+    </div>
+        <div class="text-black mx-8">
             <router-view></router-view>
         </div>
     </div>
