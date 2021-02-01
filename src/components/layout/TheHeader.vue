@@ -18,13 +18,7 @@
         </button>
       </div>
       <nav class="hidden md:flex space-x-10">
-          <router-link to="/" class="text-base font-medium text-white hover:text-gray-400">routerlink1</router-link>
-
-          <router-link to="/" class="text-base font-medium text-white hover:text-gray-400">routerlink2</router-link>
-
-          <router-link to="/" class="text-base font-medium text-white hover:text-gray-400">routerlink3</router-link>
-
-          <router-link to="/" class="text-base font-medium text-white hover:text-gray-400">routerlink4</router-link>
+        <!-- nawigacja jest w tym miejscu  -->
       </nav>
       <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
 
