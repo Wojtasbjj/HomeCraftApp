@@ -1,4 +1,5 @@
 <template>
+<div>
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8" v-if="!isLoggedIn">
   <div class="max-w-md w-full space-y-8">
     <div>
@@ -7,15 +8,19 @@
     <form class="mt-8 space-y-6" v-if="!isLoggedIn" @submit.prevent="submitForm">
       <input type="hidden" name="remember" value="true">
       <div class="rounded-md shadow-sm -space-y-px">
+        <base-spinner v-if="isLoading"></base-spinner>
         <div>
           <label for="email-address" class="sr-only">Email address</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" v-model.trim="email">
         </div>
+
+
         <div>
           <label for="password" class="sr-only">Password</label>
           <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Hasło" v-model.trim="password"> 
         </div>
       </div>
+      <p class="text-red-900">{{ this.error }}</p>
 
       <div class="flex items-center justify-between">
 
@@ -37,6 +42,7 @@
     </form>
   </div>
 </div>
+</div>
 </template>
 
 <script>
@@ -47,6 +53,9 @@ export default {
             email: '',
             password: '',
             formIsValid: true,
+            isLoading: false,
+            error: null,
+            errorText: ''
         }
     },
     computed: {
@@ -56,17 +65,34 @@ export default {
     },
     methods: {
         async submitForm() { 
+          this.error = null;
             this.fromIsValid = true;
             if(this.email === '' || !this.email.includes('@') || this.password.length < 6) {
                 this.formIsValid = false;
                 return;
             }
 
-                await this.$store.dispatch('login', {
+            this.isLoading = true;
+
+            try {
+               await this.$store.dispatch('login', {
                     userName: this.userName,
                     email: this.email,
-                    password: this.password
+                    password: this.password,
                 })
+            } catch (err) {
+              console.log(err.message)
+              if (err.message === 'Fail to authenticate'){
+                this.errorText = 'Brak dostepu. Nieprawidlowe dane logowania.'
+                
+              } else {
+                this.errorText = 'Nieznany błąd. Skontaktuj się z administratorem'
+              }
+              this.error = this.errorText
+              this.isLoading = false;
+              return
+            }
+                this.isLoading = false;
             
             this.$router.push('/userpanel/panel')
         },

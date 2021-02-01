@@ -1,4 +1,5 @@
 <template>
+<dialog open>
   <div class="spinner">
     <div class="lds-roller">
       <div></div>
@@ -11,6 +12,7 @@
       <div></div>
     </div>
   </div>
+</dialog>
 </template>
 
 <style scoped>
@@ -19,6 +21,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  z-index: 9999999;
 }
 
 .lds-roller {
@@ -26,10 +29,12 @@
   position: relative;
   width: 80px;
   height: 80px;
+  z-index: 9999999;
 }
 .lds-roller div {
   animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
   transform-origin: 40px 40px;
+  z-index: 9999999;
 }
 .lds-roller div:after {
   content: " ";
