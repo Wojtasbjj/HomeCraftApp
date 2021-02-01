@@ -55,7 +55,6 @@ export default {
             formIsValid: true,
             isLoading: false,
             error: null,
-            errorText: ''
         }
     },
     computed: {
@@ -82,13 +81,15 @@ export default {
                 })
             } catch (err) {
               console.log(err.message)
-              if (err.message === 'Fail to authenticate'){
-                this.errorText = 'Brak dostepu. Nieprawidlowe dane logowania.'
+              // console.log(err.code)
+              if (err.message === 'INVALID_PASSWORD'){
+                this.error = 'Błędne hasło.'
                 
+              } else if (err.message === 'EMAIL_NOT_FOUND') {
+                this.error = 'Nie ma takiego konta'
               } else {
-                this.errorText = 'Nieznany błąd. Skontaktuj się z administratorem'
+                this.error = 'Nieznany błąd. Skontaktuj się z administratorem'
               }
-              this.error = this.errorText
               this.isLoading = false;
               return
             }

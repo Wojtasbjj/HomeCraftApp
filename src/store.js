@@ -57,8 +57,8 @@ const store = createStore({
             const responseData = await response.json();
 
             if (!response.ok) {
-                console.log(responseData)
-                const error = new Error(responseData.message || 'Fail to authenticate');
+                console.log(responseData.message)
+                const error = new Error(responseData.error.message || 'Fail to authenticate');
                 throw error;
             }
 

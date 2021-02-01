@@ -18,7 +18,7 @@
         </button>
       </div>
       <nav class="hidden md:flex space-x-10">
-        <!-- nawigacja jest w tym miejscu  -->
+        <!-- nawigacja jest w tym miejscu jbc -->
       </nav>
       <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
 
