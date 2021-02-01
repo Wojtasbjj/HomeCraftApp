@@ -14,7 +14,8 @@ import TheHoney from './components/pages/UserPanel/TheHoney.vue';
 import TheMeat from './components/pages/UserPanel/TheMeat.vue';
 import TheBeer from "./components/pages/UserPanel/TheBeer.vue";
 import TheWine from "./components/pages/UserPanel/TheWine.vue";
-import TheDestilat from "./components/pages/UserPanel/TheDestilat.vue";
+import TheDestilat from './components/pages/UserPanel/TheDestilat.vue';
+import ThePanel from './components/pages/UserPanel/ThePanel.vue'
 
 const router = createRouter({
     history: createWebHistory(),
@@ -43,7 +44,7 @@ const router = createRouter({
                         {
                             path: 'destilat',
                             component: TheDestilat
-                        }
+                        },
                     ]
                 },
                 {
@@ -57,6 +58,10 @@ const router = createRouter({
                 {
                     path: 'meat',
                     component: TheMeat,
+                },
+                {
+                    path: 'panel',
+                    component: ThePanel
                 },
             ],
         },

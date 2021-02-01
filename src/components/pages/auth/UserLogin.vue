@@ -68,7 +68,7 @@ export default {
                     password: this.password
                 })
             
-            this.$router.push('/userpanel')
+            this.$router.push('/userpanel/panel')
         },
     }
 }

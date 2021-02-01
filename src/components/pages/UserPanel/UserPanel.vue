@@ -16,7 +16,7 @@
         <ul class="space-y-2 text-sm">
 
             <li>
-                <router-link to="/userpanel/" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
+                <router-link to="/userpanel/panel" class="flex items-center space-x-3 text-white p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
                     <span class="text-gray-600">
                     </span>
                     <span>HomeCraft</span>
@@ -79,6 +79,14 @@
                 </router-link>
             </li>
 
+             <li>
+                <button @click="logout()" class="flex items-center space-x-3 text-gray-400 p-2 rounded-md font-medium hover:bg-gray-700 focus:bg-gray-700 focus:shadow-outline">
+                    <span class="text-gray-600">
+                    </span>
+                    <span>Wyloguj się</span>
+                </button>
+            </li>
+
         </ul>
     </div>
 
@@ -100,7 +108,7 @@ export default {
         logout() {
       this.$store.dispatch('logout');
       this.$router.push('/welcome')
-    }
+    },
     },
      computed: {
         isLoggedIn() {
@@ -109,3 +117,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+    .active {
+        background-color: gray;
+    }
+</style>
