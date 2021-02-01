@@ -3,6 +3,7 @@ import {
     createWebHistory
 } from 'vue-router';
 
+
 import UserAuth from './components/pages/auth/UserAuth.vue';
 import WelcomePage from './components/pages/WelcomePage.vue';
 import UserPanel from './components/pages/UserPanel/UserPanel.vue';

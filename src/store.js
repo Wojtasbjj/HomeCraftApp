@@ -2,6 +2,8 @@ import {
     createStore
 } from 'vuex'
 
+let timer;
+
 const store = createStore({
     state() {
         return {
