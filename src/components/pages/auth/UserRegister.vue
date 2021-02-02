@@ -15,11 +15,13 @@
           <label for="email-address" class="sr-only">Email address</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email" v-model.trim="email">
         </div>
+        <base-spinner v-if="isLoading"></base-spinner>
         <div>
           <label for="password" class="sr-only">Password</label>
           <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Hasło" v-model.trim="password"> 
         </div>
       </div>
+      <error-dialog v-if="this.error" :error-text=this.error></error-dialog>
 
       <div class="flex items-center justify-between">
 
@@ -41,7 +43,9 @@
 </template>
 
 <script>
+import ErrorDialog from '../../UI/ErrorDialog.vue';
 export default {
+  components: { ErrorDialog },
     data () {
         return {
             userName: '',
@@ -49,6 +53,8 @@ export default {
             password: '',
             formIsValid: true,
             mode: 'signup',
+            isLoading: false,
+            error: null
         }
     },
     computed: {
@@ -63,12 +69,29 @@ export default {
                 this.formIsValid = false;
                 return;
             }
-                this.$store.dispatch('signup', {
+
+            this.isLoading = true;
+
+              try {
+                await this.$store.dispatch('signup', {
                     userName: this.userName,
                     email: this.email,
                     password: this.password
                 })
-            this.$router.push('/userpanel')
+              } catch(err) {
+                console.log(err.message)
+                if (err.message === 'EMAIL_EXISTS') {
+                  this.error = 'Konto o takim adresie e-mail już istnieje.'
+                } else {
+                  this.error = 'Nieznany błąd, skontaktuj się z administratorem.'
+                }
+                this.isLoading = false;
+                return
+              }
+
+
+
+            this.$router.push('/userpanel/panel')
         },
     }
 }

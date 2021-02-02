@@ -1,18 +1,18 @@
 <template>
-   <dialog open>
-     <h1>TREŚĆ BŁĘDU</h1>
-   </dialog>
+  <div class="text-white px-6 py-4 border-0 rounded relative mb-4 bg-red-500">
+  <span class="text-xl inline-block mr-5 align-middle">
+    <i class="fas fa-bell" />
+  </span>
+  <span class="inline-block align-middle mr-8">
+    <b class="capitalize">Błąd:</b> {{ errorText }}
+  </span>
+</div>
 </template>
 
-<style scoped>
-dialog {
-  margin: 0;
-  position: fixed;
-  top: 20vh;
-  left: 30%;
-  width: 40%;
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
+<script>
+export default {
+  props: [
+    'errorText'
+  ]
 }
-</style>
+</script>

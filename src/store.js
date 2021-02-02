@@ -58,7 +58,7 @@ const store = createStore({
 
             if (!response.ok) {
                 console.log(responseData.message)
-                const error = new Error(responseData.error.message || 'Fail to authenticate');
+                const error = new Error(responseData.error.message || 'Nieznany błąd. SKontaktuj się z administratorem');
                 throw error;
             }
 

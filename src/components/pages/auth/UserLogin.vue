@@ -20,7 +20,7 @@
           <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Hasło" v-model.trim="password"> 
         </div>
       </div>
-      <p class="text-red-900">{{ this.error }}</p>
+      <error-dialog v-if="this.error" :error-text=this.error></error-dialog> 
 
       <div class="flex items-center justify-between">
 
@@ -46,7 +46,9 @@
 </template>
 
 <script>
+import ErrorDialog from '../../UI/ErrorDialog.vue';
 export default {
+  components: { ErrorDialog },
     data () {
         return {
             userName: '',
@@ -80,8 +82,6 @@ export default {
                     password: this.password,
                 })
             } catch (err) {
-              console.log(err.message)
-              // console.log(err.code)
               if (err.message === 'INVALID_PASSWORD'){
                 this.error = 'Błędne hasło.'
                 
