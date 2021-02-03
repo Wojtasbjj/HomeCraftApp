@@ -10,6 +10,7 @@ const store = createStore({
             userId: null,
             token: null,
             tokenExpiration: null,
+            saveMe: false
         }
     },
     actions: {
@@ -50,7 +51,7 @@ const store = createStore({
                     userName: payload.userName,
                     email: payload.email,
                     password: payload.password,
-                    returnSecureToken: true
+                    returnSecureToken: true,
                 })
             });
 
@@ -58,13 +59,12 @@ const store = createStore({
 
             if (!response.ok) {
                 console.log(responseData.message)
-                const error = new Error(responseData.error.message || 'Nieznany błąd. SKontaktuj się z administratorem');
+                const error = new Error(responseData.error.message || 'Nieznany błąd. Skontaktuj się z administratorem');
                 throw error;
             }
 
             const expiresIn = +responseData.expiresIn * 1000;
             const expirationDate = new Date().getTime() + expiresIn;
-
 
             localStorage.setItem('token', responseData.idToken);
             localStorage.setItem('userId', responseData.localId);
@@ -78,6 +78,7 @@ const store = createStore({
                 token: responseData.idToken,
                 userId: responseData.localId,
             });
+
         },
         autoLogin(context) {
             const token = localStorage.getItem('token');
@@ -115,7 +116,8 @@ const store = createStore({
         setUser(state, payload) {
             state.token = payload.token;
             state.userId = payload.userId;
-        }
+        },
+
     }
 })
 

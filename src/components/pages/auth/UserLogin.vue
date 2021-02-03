@@ -25,11 +25,11 @@
       <div class="flex items-center justify-between">
 
         <div class="flex">
-        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
+        <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded" v-model="rememberAccount">
         <label for="remember_me" class="ml-2 block text-sm text-gray-900">Zapamiętaj mnie</label>
         </div>
 
-        <router-link to="/auth" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie pamiętasz hasła ? </router-link>
+        <router-link to="/user/login" class="whitespace-nowrap text-base font-medium text-black hover:text-gray-400">Nie pamiętasz hasła ? </router-link>
         
       </div>
       <button v-if="!isLoggedIn" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-700 hover:bg-lightblue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50" aria-required="true">Zaloguj się</button>
@@ -57,6 +57,7 @@ export default {
             formIsValid: true,
             isLoading: false,
             error: null,
+            rememberAccount: false,
         }
     },
     computed: {
@@ -86,7 +87,7 @@ export default {
                 })
             } catch (err) {
               if (err.message === 'INVALID_PASSWORD'){
-                this.error = 'Nieprawidłowe hasło.'
+                this.error = 'Błędne dane logowania'
                 
               } else if (err.message === 'EMAIL_NOT_FOUND') {
                 this.error = 'Nie ma takiego konta'
@@ -97,7 +98,13 @@ export default {
               return
             }
                 this.isLoading = false;
-            
+
+                if(this.rememberAccount === true) {
+                  this.$store.state.saveMe = true
+                } else {
+                  this.$store.state.saveMe = false;
+                }
+
             this.$router.push('/userpanel/panel')
         },
     }

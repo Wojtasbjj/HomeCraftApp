@@ -27,7 +27,7 @@
 
 
         <div class="flex">
-        <input id="accept" name="accept" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded">
+        <input id="accept" name="accept" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded" required>
         <label for="accept" class="ml-2 block text-sm text-gray-900">Akceptuję regulamin i oddaję swoją dusze</label>
         </div>
         
