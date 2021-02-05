@@ -79,6 +79,7 @@ const store = createStore({
                 userId: responseData.localId,
             });
 
+
         },
         autoLogin(context) {
             const token = localStorage.getItem('token');

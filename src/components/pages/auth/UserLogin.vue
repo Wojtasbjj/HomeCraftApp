@@ -100,9 +100,7 @@ export default {
                 this.isLoading = false;
 
                 if(this.rememberAccount === true) {
-                  this.$store.state.saveMe = true
-                } else {
-                  this.$store.state.saveMe = false;
+                  //tutaj cookie
                 }
 
             this.$router.push('/userpanel/panel')
