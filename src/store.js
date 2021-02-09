@@ -1,6 +1,7 @@
 import {
     createStore
 } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 let timer;
 
@@ -82,10 +83,11 @@ const store = createStore({
 
         },
         autoLogin(context) {
+            console.log(this.$cookies.get('saveUser')) // o tutaj mam "Cannot read property 'get' of undefined"
+
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('userId');
             const tokenExpiration = localStorage.getItem('tokenExpiration');
-
 
             const expiresIn = +tokenExpiration - new Date().getTime();
 
@@ -103,6 +105,7 @@ const store = createStore({
                     userId: userId,
                 })
             }
+            console.log('warotsc saveMe:')
         },
     },
     getters: {
@@ -119,7 +122,8 @@ const store = createStore({
             state.userId = payload.userId;
         },
 
-    }
+    },
+    plugins: [createPersistedState()]
 })
 
 export default store;

@@ -57,7 +57,7 @@ export default {
             formIsValid: true,
             isLoading: false,
             error: null,
-            rememberAccount: false,
+            rememberAccount: this.$cookies.get('saveUser')
         }
     },
     computed: {
@@ -100,7 +100,9 @@ export default {
                 this.isLoading = false;
 
                 if(this.rememberAccount === true) {
-                  //tutaj cookie
+                  this.$cookies.set('saveUser', true)
+                } else {
+                  this.$cookies.set('saveUser', false)
                 }
 
             this.$router.push('/userpanel/panel')
