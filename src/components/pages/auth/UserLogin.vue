@@ -89,7 +89,7 @@ export default {
                 this.error = 'Nieprawidłowe hasło.'
                 
               } else if (err.message === 'EMAIL_NOT_FOUND') {
-                this.error = 'Nie ma takiego konta'
+                this.error = 'Niepoprawne dane logowania'
               } else {
                 this.error = 'Nieznany błąd. Skontaktuj się z administratorem'
               }
