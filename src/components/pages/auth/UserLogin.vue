@@ -51,7 +51,6 @@ export default {
   components: { ErrorDialog },
     data () {
         return {
-            userName: '',
             email: '',
             password: '',
             formIsValid: true,
@@ -80,7 +79,6 @@ export default {
 
             try {
                await this.$store.dispatch('login', {
-                    userName: this.userName,
                     email: this.email,
                     password: this.password,
                 })

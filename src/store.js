@@ -1,6 +1,7 @@
 import {
     createStore
 } from 'vuex'
+import createPersistedState from 'vuex-persistedstate';
 
 let timer;
 
@@ -10,8 +11,10 @@ const store = createStore({
             userId: null,
             token: null,
             tokenExpiration: null,
+            userName: ''
         }
     },
+    plugins: [createPersistedState()],
     actions: {
         async login(context, payload) {
             return context.dispatch('auth', {
@@ -55,6 +58,7 @@ const store = createStore({
             });
 
             const responseData = await response.json();
+            context.state.userName = responseData.email
 
             if (!response.ok) {
                 console.log(responseData.message)
@@ -64,7 +68,6 @@ const store = createStore({
 
             const expiresIn = +responseData.expiresIn * 1000;
             const expirationDate = new Date().getTime() + expiresIn;
-
 
             localStorage.setItem('token', responseData.idToken);
             localStorage.setItem('userId', responseData.localId);
@@ -78,8 +81,10 @@ const store = createStore({
                 token: responseData.idToken,
                 userId: responseData.localId,
             });
+            // console.log(responseData)
         },
         autoLogin(context) {
+            console.log(context.state.userName)
             const token = localStorage.getItem('token');
             const userId = localStorage.getItem('userId');
             const tokenExpiration = localStorage.getItem('tokenExpiration');
